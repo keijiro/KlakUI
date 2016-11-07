@@ -1,8 +1,8 @@
 KlakUI
 ======
 
-*KlakUI* is an extension of [Klak][Klak] that provides custom UI controls.
-It also contains node classes for receiving input from these UI controls.
+*KlakUI* is an extension of [Klak][Klak] that provides custom UI controls
+for the *Wiring* dataflow system.
 
 ![gif](http://66.media.tumblr.com/d094fed9d1ae7f7cf1d8de5e1ce4da74/tumblr_og62oqbDjZ1qio469o1_400.gif)
 
@@ -15,14 +15,14 @@ There are three types of control -- **Knob**, **Button** and **Toggle**.
 
 ![gif](http://66.media.tumblr.com/79e789d00361cd5002d36dcc394aaaa7/tumblr_og2kkyoNgI1qio469o1_400.gif)
 
-Also there are three types of specialized node -- `UIKnobInput`,
-`UIButtonInput` and `UIToggleInput`.
+Also there are three types of node that are specialized for receiving input
+from the controls -- `UIKnobInput`, `UIButtonInput` and `UIToggleInput`.
 
 ![screenshot](http://i.imgur.com/iKjCquY.png)
 
-To receive input from the UI controls, the `Target` property in the controls
+To receive input from the UI controls, the `target` property in the controls
 should be specified properly. After specifying the target, it starts sending
-input events on the UI control to the specified node.
+input events on the UI control to the target node.
 
 ![screenshot](http://i.imgur.com/kv118vh.png)
 
