@@ -8,6 +8,14 @@ for the *Wiring* dataflow system.
 
 [Klak]: https://github.com/keijiro/Klak
 
+Installation
+------------
+
+Download one of the unitypackage files from the [Releases] page and import it
+to a project.
+
+[Releases]: https://github.com/keijiro/KlakUI/releases
+
 Components
 ----------
 
@@ -29,7 +37,7 @@ input events on the UI control to the target node.
 License
 -------
 
-Copyright (C) 2016 Keijiro Takahashi
+Copyright (C) 2016, 2017 Keijiro Takahashi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
