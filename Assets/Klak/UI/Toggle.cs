@@ -29,7 +29,7 @@ using Klak.Wiring;
 namespace Klak.UI
 {
     [AddComponentMenu("UI/Klak/Toggle")]
-    public class Toggle : Selectable, IPointerClickHandler
+    public class Toggle : Selectable, IPointerClickHandler, ISubmitHandler
     {
         #region Editable properties
 
@@ -119,6 +119,15 @@ namespace Klak.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
+            InternalToggle();
+        }
+
+        #endregion
+
+        #region ISubmitHandler implementation
+
+        public virtual void OnSubmit(BaseEventData eventData)
+        {
             InternalToggle();
         }
 
