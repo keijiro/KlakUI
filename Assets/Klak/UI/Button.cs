@@ -21,6 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -30,7 +31,7 @@ namespace Klak.UI
 {
     [AddComponentMenu("UI/Klak/Button")]
     [RequireComponent(typeof(RectTransform))]
-    public class Button : Selectable, IPointerDownHandler, IPointerUpHandler
+    public class Button : Selectable, IPointerDownHandler, IPointerUpHandler, ISubmitHandler
     {
         #region Editable properties
 
@@ -65,6 +66,40 @@ namespace Klak.UI
             if (!IsActive() || !IsInteractable()) return;
             if (eventData.button != PointerEventData.InputButton.Left) return;
             base.OnPointerUp(eventData);
+            if (_target != null) _target.ButtonUp();
+        }
+
+        #endregion
+
+        #region ISubmitHandler implementation
+
+        public virtual void OnSubmit(BaseEventData eventData)
+        {
+            if (!IsActive() || !IsInteractable()) return;
+            if (_target != null) _target.ButtonDown();
+
+            // if we get set disabled during the press
+            // don't run the coroutine.
+            if (!IsActive() || !IsInteractable()) return;
+
+            DoStateTransition(SelectionState.Pressed, false);
+            StartCoroutine(OnFinishSubmit());
+        }
+
+        private IEnumerator OnFinishSubmit()
+        {
+            var fadeTime = colors.fadeDuration;
+            var elapsedTime = 0f;
+
+            while (elapsedTime < fadeTime)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            DoStateTransition(currentSelectionState, false);
+
+            if (!IsActive() || !IsInteractable()) yield break;
             if (_target != null) _target.ButtonUp();
         }
 
